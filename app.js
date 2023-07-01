@@ -1,7 +1,11 @@
 // player choice
 const playerSelection = "Rock";
+// player Score
+let playerScore = 0;
 // computer choice
-let computer = getComputerChoice();
+let computerSelection = getComputerChoice();
+// computer Score
+let computerScore = 0;
 // create a function that generates a random selection for the computer
 function getComputerChoice() {
 // generate a number 1 - 3
@@ -24,9 +28,7 @@ function getComputerChoice() {
 // create a function that thats two arguments computer choice and player choice
 function playGame(playerChoice, computerChoice) {
     // make player choice character insensitive 
-    playerChoice = capitalizeFirstLetter(playerChoice)
-    // create a win variable
-    let win = false;
+    playerChoice = capitalizeFirstLetter(playerChoice);
     // check  if playerChoice and computer choice are the same
     if(playerChoice === computerChoice) {
         // say that they tied
@@ -35,22 +37,42 @@ function playGame(playerChoice, computerChoice) {
     } else if(playerChoice === 'Rock' && computerChoice === 'Paper' ||
         playerChoice === 'Paper' && computerChoice === 'Scissors' ||
         playerChoice === 'Scissors' && computerChoice === 'Rock'){
-        win = true;
+        computerScore += 1;
         console.log(`You Lose! ${computerChoice} beats ${playerChoice}`);
     } else if(computerChoice === 'Rock' && playerChoice === 'Paper' ||
     computerChoice === 'Paper' && playerChoice === 'Scissors' ||
     computerChoice === 'Scissors' && playerChoice === 'Rock'){
-        win = true;
+        playerScore += 1;
         console.log(`You Win! ${playerChoice} beats ${computerChoice}`);
         // if error in choice trow error
     } else {
-        console.warn('Error Value not Accepted')
+        console.warn('Error Value not Accepted');
     };
-    computer = getComputerChoice()
+    // give computer a different choice
+    computerSelection = getComputerChoice();
 };
 
 // create function to make text lower case except first letter
 function capitalizeFirstLetter(word){
-    word = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+    word = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
     return word
+}
+
+//  create a function to play 5 games
+function game() {
+    // create a variable for loop
+    let  keepGoing = true;
+    // create loop until someone wins 3 games
+    while(keepGoing){
+        playGame(playerSelection,computerSelection);
+        console.log('Player Score: ' + playerScore);
+        console.log('Computer Score: ' + computerScore);
+        if(playerScore === 3){
+            keepGoing = false;
+            console.log('Player Wins');
+        } else if(computerScore === 3){
+            keepGoing = false;
+            console.log('Computer Wins');
+        };
+    };
 }
