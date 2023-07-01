@@ -70,9 +70,14 @@ function game() {
         if(playerScore === 3){
             keepGoing = false;
             console.log('Player Wins');
+            // restart score
+            computerScore = 0;
+            playerScore = 0;
         } else if(computerScore === 3){
             keepGoing = false;
             console.log('Computer Wins');
+            computerScore = 0;
+            playerScore = 0;
         };
     };
 }
