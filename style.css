@@ -23,17 +23,19 @@ body {
     font-weight: 900;
     background-color: darkblue;
     height: 4rem;
+    border-bottom: 2px #ADD8E6 solid;
 }
 
 .game-stats{
     display: flex;
     justify-content: space-around;
+    font-size: 1.3rem;
 }
 
 .choices {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     gap: 2rem;
     margin-top: 3rem;
@@ -48,10 +50,36 @@ img:hover {
 }
 
 .game-winner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     font-size: 1.5rem;
 }
 
+.retry-btn{
+    font-family: 'Marck Script', cursive;
+    background-color: darkblue;
+    border: 2px solid #ADD8E6;
+    font-size: 1.2rem;
+    color: white;
+    border-radius: 8px;
+    margin-top: 20px;
+    width: 128px;
+    height: 32px;
+}
+
+.retry-btn:hover {
+    cursor: pointer;
+}
+
+.retry-btn:active {
+    background-color: #ADD8E6;
+    border: 2px solid darkblue;
+}
+
 footer {
+    border-top: 2px #ADD8E6 solid;
     height: 5rem;
     display: flex;
     justify-content: center;

@@ -117,10 +117,10 @@ function addScoreText(){
 function checkWinner(){
     if(playerScore === 5){
         addWinnerText('You have Won');
-        playAgain()
+        playAgain();
     } else if(computerScore === 5){
-        playAgain()
         addWinnerText('You have Lost');
+        playAgain();
     };
 };
 
@@ -129,6 +129,13 @@ function playAgain(){
     const button = document.createElement('button');
     button.classList.add('retry-btn');
     button.textContent = 'Play Again';
-    text.appendChild(button)
+    text.appendChild(button);
+    button.addEventListener('click', restartGame);
 };
-// ad an event to tte elements when clicked
+
+function restartGame(){
+    playerScore = 0;
+    computerScore = 0;
+    addScoreText();
+    addWinnerText('Ready for Another Round?');
+};
