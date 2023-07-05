@@ -1,5 +1,5 @@
 // player choice
-const playerSelection = "Rock";
+let playerSelection = "Rock";
 // player Score
 let playerScore = 0;
 // computer choice
@@ -27,23 +27,24 @@ function getComputerChoice() {
 
 // create a function that thats two arguments computer choice and player choice
 function playGame(playerChoice, computerChoice) {
+    if(playerScore === 5 || computerScore === 5) return
     // make player choice character insensitive 
     playerChoice = capitalizeFirstLetter(playerChoice);
     // check  if playerChoice and computer choice are the same
     if(playerChoice === computerChoice) {
         // say that they tied
-        console.log('You have Tied');
+        addWinnerText('You have Tied');
         //if not the same compare choice to choose winner
     } else if(playerChoice === 'Rock' && computerChoice === 'Paper' ||
         playerChoice === 'Paper' && computerChoice === 'Scissors' ||
         playerChoice === 'Scissors' && computerChoice === 'Rock'){
         computerScore += 1;
-        console.log(`You Lose! ${computerChoice} beats ${playerChoice}`);
+        addWinnerText(`You Lose! ${computerChoice} beats ${playerChoice}`);
     } else if(computerChoice === 'Rock' && playerChoice === 'Paper' ||
     computerChoice === 'Paper' && playerChoice === 'Scissors' ||
     computerChoice === 'Scissors' && playerChoice === 'Rock'){
         playerScore += 1;
-        console.log(`You Win! ${playerChoice} beats ${computerChoice}`);
+        addWinnerText(`You Win! ${playerChoice} beats ${computerChoice}`);
         // if error in choice trow error
     } else {
         console.warn('Error Value not Accepted');
@@ -81,3 +82,53 @@ function game() {
         };
     };
 }
+
+// get html elements
+function addChoiceListener(selector, choice, callback){
+    const element = document.querySelector(`${selector}`);
+    element.addEventListener('click', () => {
+        callback(choice);
+    });
+};
+
+function handleChoice(choice) {
+    playGame(choice, computerSelection);
+    addScoreText();
+    checkWinner();
+};
+addChoiceListener('.rock-btn','rock',handleChoice);
+addChoiceListener('.scissors-btn','scissors',handleChoice);
+addChoiceListener('.paper-btn','paper',handleChoice);
+
+function addWinnerText(input){
+    const text = document.querySelector('.game-winner');
+    text.textContent = '';
+    text.textContent = input;
+};
+
+function addScoreText(){
+    const playerScoreText = document.querySelector('.player-score');
+    const computerScoreText = document.querySelector('.computer-score');
+    playerScoreText.textContent = `Player Score: ${playerScore}`;
+    computerScoreText.textContent = `Computer Score: ${computerScore}`;
+
+};
+
+function checkWinner(){
+    if(playerScore === 5){
+        addWinnerText('You have Won');
+        playAgain()
+    } else if(computerScore === 5){
+        playAgain()
+        addWinnerText('You have Lost');
+    };
+};
+
+function playAgain(){
+    const text = document.querySelector('.game-winner');
+    const button = document.createElement('button');
+    button.classList.add('retry-btn');
+    button.textContent = 'Play Again';
+    text.appendChild(button)
+};
+// ad an event to tte elements when clicked

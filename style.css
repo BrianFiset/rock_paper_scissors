@@ -1,0 +1,60 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 100vh;
+    justify-content: space-between;
+    background-color: gray;
+    color: white;
+    font-family: 'Marck Script', cursive;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: 900;
+    background-color: darkblue;
+    height: 4rem;
+}
+
+.game-stats{
+    display: flex;
+    justify-content: space-around;
+}
+
+.choices {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.choices .text {
+    font-size: 3rem;
+}
+
+img:hover {
+    transform: scale(1.1);
+}
+
+.game-winner {
+    font-size: 1.5rem;
+}
+
+footer {
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: darkblue;
+}
